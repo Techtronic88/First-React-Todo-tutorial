@@ -24,10 +24,32 @@ state = {
    }
  ]
 }
+
+// We cannot attempt to set state directly hence why this.setState method was used
+// In State Component, we access todos, BUT in passed down component we used todo as parameter -> CAREFUL
+
+// USER EVENT: Toggle Complete
+// markComplete return to us the todo that were not passed 
+markComplete = (id) => {
+  this.setState({ todos: this.state.todos.map(todo => {
+    if (todo.id === id ) {
+      todo.completed = !todo.completed
+    }
+    return todo
+  }) })
+}
+
+// USER EVENT: Delete an item off todo list
+delTodo = (id) => {
+  this.setState({todos: [...this.state.todos.filter(todo => todo.id !== id)]})
+}
+
   render() {
     return (
       <div className="App">
-        <Todos todos={this.state.todos}/>
+        <Todos todos={this.state.todos} 
+               markComplete={this.markComplete} 
+               delTodo={this.delTodo}/>
       </div>
     );
   }
