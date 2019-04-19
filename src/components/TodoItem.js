@@ -27,11 +27,15 @@ export class TodoItem extends Component {
   // }
   render() {
     // In this component we must acknowledge and use todo as parameter. NOT todos object itself
+    // Applying destructure so we won't have to write this.props.id or title everytime.
+    // NOTE: We are using bind to bind this to the id of the state todos in the APP> 
+    const {id, title } = this.props.todo;
     return (
       <div style={this.getStyle()}>
         <p>
-        <input type="checkbox"  onChange={this.props.markComplete.bind(this.props.todo.id)}/> {' '}
-        { this.props.todo.title }
+        <input type="checkbox"  onChange={this.props.markComplete.bind(this, id)}/> {' '}
+        {title}
+        <button onClick={this.props.delTodo.bind(this, id)} style={btnStyle}>X</button>
         </p>
       </div>
     )
@@ -40,5 +44,17 @@ export class TodoItem extends Component {
 TodoItem.propTypes = {
   todo: PropTypes.object.isRequired
 }
- 
+
+const btnStyle = {
+  background: '#ff0000',
+  color: '#fff',
+  border: 'none',
+  padding: '5px 10px',
+  borderRadius: '50%',
+  cursor: 'pointer',
+  float:'right'
+}
+
+
+
 export default TodoItem
