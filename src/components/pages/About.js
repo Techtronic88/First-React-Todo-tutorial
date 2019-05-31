@@ -1,12 +1,22 @@
 import React from 'react'
 
-export default function About() {
+
+
+const About = () =>  {
+  
+  const style = {
+  textAlign: "center"
+  }
+
+  
   return (
-    <React.Fragment>
+    <div style={style}>
     <h1> About</h1>
-    <p>This is the TodoList app v1.0.0. It is part of a React crash course</p>
-    
-    
-    </React.Fragment>
+    <hr/><br/>
+    <p> Though this app is not the most complex or the best looking todo list.</p>
+    <p>It demonstates the fundamental concept of any software process and development which is CRUD  </p>
+    </div>
   )
 }
+
+export default About
